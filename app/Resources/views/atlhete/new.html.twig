@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Atlhete creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        
+        <select name="epreuve">
+            {% for epreuve in epreuves %}
+                <option value="{{epreuve.id}}">{{epreuve.name}}</option>
+            {% endfor %}
+        </select>
+        <br />
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('atlhete_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

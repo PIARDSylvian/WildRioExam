@@ -1,0 +1,14 @@
+rio_atlhete:
+    resource: "@RioBundle/Controller/AtlheteController.php"
+    type:     annotation
+
+rio_epreuve:
+    resource: "@RioBundle/Controller/EpreuveController.php"
+    type:     annotation
+
+rio:
+    resource: "@RioBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

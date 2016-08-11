@@ -1,0 +1,46 @@
+{% extends "RioBundle::layout.html.twig" %}
+{% block body %}
+	<div class="col-md-1">            
+        <a class='btn' href="{{ path('index') }}" title="retour à l'index"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span> Retour</a>
+    </div>
+
+	<div class="col-md-12 header-epreuve">
+		<img src="{{ asset('img/natation.jpg') }}" alt='natation'>
+    </div>
+	<div class="col-md-12 text-epreuve">
+		<p>{{epreuve.description}}</p>
+	</div>
+	<div class="col-md-12 vote-container">
+		<div class="vote">
+			<ul>
+				{% for atlhete in epreuve.atlhetes %}
+					<li>{{atlhete.name}}<a class=' btn btn-success pull-right' href="{{ path('vote',
+						{'id_epreuve' : epreuve.id,'id_atlhete': atlhete.id })}}" title="voter pour {{atlhete.name}}">Voter</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-12 resultat">
+		<div class="progress">
+			<p class="pull-right">Atlhète 1</p>
+  			<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">    		
+  			</div>
+		</div>
+		<div class="progress">
+			<p class="pull-right">Atlhète 1</p>
+  			<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">    		
+  			</div>
+		</div>
+	</div>
+	<div class="col-md-12 footer">
+		<div class="col-md-2 col-md-offset-3">
+			<img class="social" src="{{ asset('img/facebook.png') }}" alt='natation'>
+		</div>
+		<div class="col-md-2">
+			<img class="social" src="{{ asset('img/twitter.png') }}" alt='natation'>
+		</div>
+		<div class="col-md-2">
+			<img class="social" src="{{ asset('img/googleplus.png') }}" alt='natation'>
+		</div>
+	</div>
+{% endblock body %}

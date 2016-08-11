@@ -1,0 +1,65 @@
+{% extends "RioBundle::layout.html.twig" %}
+{% block body %}
+	<div class="header">
+        <div class=" col-md-2 col-md-offset-10 connect btn">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            {% if app.user %}
+			    Bonjour {{ user | capitalize }}
+			 {% else %}
+			    <span type="button" data-toggle="modal" data-target="#myModal"> Se connecter
+            </span>
+			 {% endif %}            
+        </div>
+        <!-- Debut modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+				{{ render(controller('RioBundle:Security:login')) }}
+            </div>
+        </div>
+        <!-- Fin modal -->
+    </div>
+    {% for flashMessage in app.session.flashbag.get('succéss') %}
+	<div class="alert alert-success alert-dismissible col-md-10 col-md-offset-1" role="alert">
+	    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	    <strong>Succes </strong>{{ flashMessage }}
+	</div>
+	{% endfor %}
+	<div class="col-md-12">
+		<h2>Prochaines épreuves</h2>
+		{% for epreuve in epreuves %}
+		<div class="col-md-4 epreuve">
+			<img src="{{ asset('img/natation.jpg') }}" alt='natation'>
+			<div class="col-md-12 epreuve-content">
+				{{epreuve.description}}
+				<div class='col-md-2 col-md-offset-9'>
+					<a class='btn' href="{{ path('epreuve', { 'id' : epreuve.id }) }}" title="{{epreuve.name}}">
+						<img src="{{ asset('img/mor.png') }}">
+					</a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="col-md-12 intro">
+		<div class="col-md-10 col-md-offset-1 intro-content">
+			<div class="col-md-8 video">
+				<iframe class="col-md-12" height="300px" src="https://www.youtube.com/embed/HjA9F1YICMY" frameborder="0" allowfullscreen></iframe>
+			</div>
+			<div class="col-md-4 intro-text">
+				<P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur varius sed velit quis dignissim. Fusce in finibus neque. Nunc ac aliquam eros. Curabitur risus quam, ultricies eget faucibus vel, tincidunt id enim. Cras dolor velit, viverra vel faucibus ut, efficitur eu tortor. Proin ac porta nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam hendrerit ligula et aliquet aliquam.
+				</P>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12 footer">
+		<div class="col-md-2 col-md-offset-3">
+			<img class="social" src="{{ asset('img/facebook.png') }}" alt='natation'>
+		</div>
+		<div class="col-md-2">
+			<img class="social" src="{{ asset('img/twitter.png') }}" alt='natation'>
+		</div>
+		<div class="col-md-2">
+			<img class="social" src="{{ asset('img/googleplus.png') }}" alt='natation'>
+		</div>
+	</div>
+{% endblock body %}

@@ -1,0 +1,15 @@
+index:
+    path:     /
+    defaults: { _controller: RioBundle:Default:index }
+
+login:
+    path:     /login
+    defaults: { _controller: RioBundle:Security:login }
+
+epreuve:
+    path:     /epreuve/{id}
+    defaults: { _controller: RioBundle:Default:epreuve }
+
+vote:
+    path:     /epreuve/{id_epreuve}/{id_atlhete}
+    defaults: { _controller: RioBundle:Default:vote }
